@@ -18,7 +18,9 @@ public class App {
 		//	entries.put(extrVal, extrKey);
 		//}
 		//HashMap<String, String> invCurStorageData = curStorageData.inverse();
-		Map<String, String> curStorageData = storage.toMap();
+		Map<String, String> curStorageData = new HashMap<>();
+		curStorageData = storage.toMap();
+		//Map<String, String> curStorageData = storage.toMap();
 		var entries = curStorageData.entrySet();
 		for (var entry : entries) {
 			storage.unset(entry.getKey());
