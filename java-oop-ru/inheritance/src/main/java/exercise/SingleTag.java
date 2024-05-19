@@ -13,18 +13,22 @@ public class SingleTag extends Tag {
 	}
 	@Override
 	public String toString() {
-		int sizeAttrTag = attrsTag.size();
+		//int sizeAttrTag = attrsTag.size();
 		ArrayList<String> listKeys = new ArrayList<String>();
 		ArrayList<String> listValues = new ArrayList<String>();
-		Set<String> keys = attrsTag.keySet();
-		ArrayList<String> values = new ArrayList<>(attrsTag.values());
-		var entries = attrsTag.entrySet();
-		for (var entry : entries) {
-			listKeys.add(entry.getKey());
-			listValues.add(entry.getValue());
-		}
-		return "<" + nameTag + listKeys.get(0) + "=\""
-			+ listValues.get(0) +"\" " + listKeys.get(1) + "=\"" + listValues.get(1) + "\">"; 
+		//Set<String> keys = attrsTag.keySet();
+		//ArrayList<String> values = new ArrayList<>(attrsTag.values());
+		//var entries = attrsTag.entrySet();
+		//for (var entry : entries) {
+		//	listKeys.add(entry.getKey());
+		//	listValues.add(entry.getValue());
+		//}
+		ArrayList< ArrayList<String> > unionArraysKeyAndValue = buildListKeysAndValues();
+		listKeys = unionArraysKeyAndValue.get(0);
+		listValues = unionArraysKeyAndValue.get(1);
+		//return "<" + nameTag + listKeys.get(0) + "=\""
+		//	+ listValues.get(0) +"\" " + listKeys.get(1) + "=\"" + listValues.get(1) + "\">";
+		return stringifyAttributes();
 			// Tag img = new SingleTag("img", Map.of("class", "v-10", "id", "wop"));
 	}
 }

@@ -11,9 +11,10 @@ public class PairedTag extends Tag {
 	private String bodyTag;
 	private List<String> childrenTags;
 	PairedTag(String inpStrNameTag, HashMap<String,String> inpMapAttrsTag, String inpBodyTag, List<String> inpChildrenTags) {
-		strNameTag = inpStrNameTag;
-		mapAttrsTag = new HashMap();
-		inpMapAttrsTag.forEach(mapAttrsTag::putIfAbsent);
+		//strNameTag = inpStrNameTag;
+		//mapAttrsTag = new HashMap();
+		//inpMapAttrsTag.forEach(mapAttrsTag::putIfAbsent);
+		super(inpStrNameTag, inpMapAttrsTag);
 		bodyTag = inpBodyTag;
 		childrenTags = inpChildrenTags;
 	}
