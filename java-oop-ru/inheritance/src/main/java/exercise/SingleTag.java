@@ -1,15 +1,18 @@
 package exercise;
 
 import java.util.Map;
+import java.util.HashMap;
+import java.util.ArrayList;
 
 // BEGIN
 public class SingleTag extends Tag {
 	private String nameTag;
-	private HashMap<String,String> attrsTag;
-	SingleTag(String inpTagName, HashMap<String,String> inpAttrsTag) {
+	//private Map<String,String> attrsTag;
+	SingleTag(String inpTagName, Map<String,String> inpAttrsTag) { // Hash
+		super(inpTagName, inpAttrsTag);
 		nameTag = inpTagName;
-		attrsTag = new HashMap();
-		inpAttrsTag.forEach(attrsTag::putIfAbsent);
+		//attrsTag = new HashMap<>();
+		//inpAttrsTag.forEach(attrsTag::putIfAbsent);
 	}
 	@Override
 	public String toString() {
@@ -24,12 +27,27 @@ public class SingleTag extends Tag {
 		//	listValues.add(entry.getValue());
 		//}
 		ArrayList< ArrayList<String> > unionArraysKeyAndValue = buildListKeysAndValues();
-		listKeys = unionArraysKeyAndValue.get(0);
-		listValues = unionArraysKeyAndValue.get(1);
-		//return "<" + nameTag + listKeys.get(0) + "=\""
-		//	+ listValues.get(0) +"\" " + listKeys.get(1) + "=\"" + listValues.get(1) + "\">";
-		return stringifyAttributes();
-			// Tag img = new SingleTag("img", Map.of("class", "v-10", "id", "wop"));
+		if (unionArraysKeyAndValue.get(0).size() > 1 && unionArraysKeyAndValue.get(1).size() > 1) {
+			listKeys = unionArraysKeyAndValue.get(0);
+			listValues = unionArraysKeyAndValue.get(1);
+			String firstListKey = listKeys.get(0);
+			String secondListKey = listKeys.get(1);
+			String firstListValue = listValues.get(0);
+			String secondListValue = listValues.get(1);
+			return "<" + nameTag + " " + secondListKey + "=\""
+				+ secondListValue +"\" " + firstListKey + "=\"" + firstListValue + "\">";
+			//return stringifyAttributes();
+				// Tag img = new SingleTag("img", Map.of("class", "v-10", "id", "wop"));
+		} else if (unionArraysKeyAndValue.get(0).size() == 1 && unionArraysKeyAndValue.get(1).size() == 1) {
+			listKeys = unionArraysKeyAndValue.get(0);
+			listValues = unionArraysKeyAndValue.get(1);
+			String firstListKey = listKeys.get(0);
+			String firstListValue = listValues.get(0);
+			return "<" + nameTag + " " + firstListKey + "=\"" + firstListValue + "\">";
+		} else {
+			return "<" + nameTag + ">";
+		}
+		
 	}
 }
 // END

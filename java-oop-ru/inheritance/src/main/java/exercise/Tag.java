@@ -2,20 +2,23 @@ package exercise;
 
 import java.util.stream.Collectors;
 import java.util.Map;
+import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Set;
 
 // BEGIN
 public class Tag {
 	private String nameTag;
-	private HashMap<String,String> attrsTag;
-	Tag(String inpTagName, HashMap<String,String> inpAttrsTag) {
+	private Map<String,String> attrsTag; // Hash
+	Tag(String inpTagName, Map<String,String> inpAttrsTag) { // Hash
 		nameTag = inpTagName;
-		attrsTag = new HashMap();
+		attrsTag = new HashMap<>();
 		inpAttrsTag.forEach(attrsTag::putIfAbsent);
 	}
 	public String stringifyAttributes() {
-        return attributes.keySet().stream()
+        return attrsTag.keySet().stream() // attributes
             .map(key -> {
-                String value = attributes.get(key);
+                String value = attrsTag.get(key); // attributes
                 return String.format(" %s=\"%s\"", key, value);
             })
             .collect(Collectors.joining(""));
@@ -36,6 +39,6 @@ public class Tag {
 		unionArraysKeyAndValue.add(listValues);
 		return unionArraysKeyAndValue;
 	}
-	public String toString();
+	public String toString() {return stringifyAttributes();};
 }
 // END
