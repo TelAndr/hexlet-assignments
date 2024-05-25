@@ -2,6 +2,7 @@ package exercise;
 
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.LinkedHashMap;
 import java.util.Set;
 
 // BEGIN
@@ -18,15 +19,23 @@ public class App {
 		//	entries.put(extrVal, extrKey);
 		//}
 		//HashMap<String, String> invCurStorageData = curStorageData.inverse();
-		Map<String, String> curStorageData = new HashMap<>();
-		curStorageData = storage.toMap();
+		String curKey, curValue;
+		Map<String, String> curStorageData = new LinkedHashMap<>();
+		//curStorageData = storage.toMap();
+		storage.toMap().forEach(curStorageData::putIfAbsent);
+		KeyValueStorage storageClone = new InMemoryKV(curStorageData);
 		//Map<String, String> curStorageData = storage.toMap();
 		var entries = curStorageData.entrySet();
 		for (var entry : entries) {
-			storage.unset(entry.getKey());
-			storage.set(entry.getValue(), entry.getKey());
-			
+			curKey = entry.getKey();
+			curValue = entry.getValue();
+			storageClone.unset(curKey); //storageClone.unset(entry.getKey());
+			storageClone.set(curValue, curKey); //storageClone.set(entry.getValue(), entry.getKey());
 		}
+		//for (var entry : entries) {
+			//storage.unset(entry.getKey());
+		//	storage.set(entry.getValue(), entry.getKey());
+		//}
 		//Map<String, String> mapInversed = 
 		//	curStorageData.entrySet()
 		//		.stream()
@@ -39,7 +48,7 @@ public class App {
 		//KeyValueStorage invStorage = new InMemoryKV(newMap);
 		//return invStorage;
 		//HashMap<String, String> invCurStorageData = curStorageData.inverse();
-		return storage;
+		return storageClone;
 	}
 }
 // END

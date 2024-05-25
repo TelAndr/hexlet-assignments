@@ -2,13 +2,15 @@ package exercise;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 // BEGIN
 public class InMemoryKV implements KeyValueStorage{
-	private HashMap<String,String> storageData; //= new HashMap<String, String>();
-	InMemoryKV(HashMap<String,String> inputStorageData){
-		storageData = new HashMap<String, String>();
-		storageData = inputStorageData;
+	private Map<String,String> storageData; //= new HashMap<String, String>();
+	InMemoryKV(Map<String,String> inputStorageData){
+		storageData = new LinkedHashMap<>(); //<String, String>();
+		//storageData = inputStorageData;
+		inputStorageData.forEach(storageData::putIfAbsent);
 	}
 	//@Override 
 	public void set(String key, String value){ 

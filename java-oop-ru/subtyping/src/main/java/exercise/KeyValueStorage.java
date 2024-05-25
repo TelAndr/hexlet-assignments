@@ -1,7 +1,7 @@
 package exercise;
 
 import java.util.Map;
-
+import java.util.HashMap;
 interface KeyValueStorage {
     void set(String key, String value);
     void unset(String key);
