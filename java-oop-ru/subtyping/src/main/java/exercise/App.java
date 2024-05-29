@@ -20,17 +20,17 @@ public class App {
 		//}
 		//HashMap<String, String> invCurStorageData = curStorageData.inverse();
 		String curKey, curValue;
-		Map<String, String> curStorageData = new LinkedHashMap<>();
+		Map<String, String> curStorageData = new HashMap<>();
 		//curStorageData = storage.toMap();
-		storage.toMap().forEach(curStorageData::putIfAbsent);
+		(storage.toMap()).forEach(curStorageData::putIfAbsent);
 		KeyValueStorage storageClone = new InMemoryKV(curStorageData);
 		//Map<String, String> curStorageData = storage.toMap();
-		var entries = curStorageData.entrySet();
+		var entries = curStorageData.entrySet();  //storage.toMap().entrySet();
 		for (var entry : entries) {
 			curKey = entry.getKey();
 			curValue = entry.getValue();
-			storageClone.unset(curKey); //storageClone.unset(entry.getKey());
-			storageClone.set(curValue, curKey); //storageClone.set(entry.getValue(), entry.getKey());
+			storage.unset(curKey); //storageClone.unset(entry.getKey());
+			storage.set(curValue, curKey); //storageClone.set(entry.getValue(), entry.getKey());
 		}
 		//for (var entry : entries) {
 			//storage.unset(entry.getKey());
@@ -48,7 +48,7 @@ public class App {
 		//KeyValueStorage invStorage = new InMemoryKV(newMap);
 		//return invStorage;
 		//HashMap<String, String> invCurStorageData = curStorageData.inverse();
-		return storageClone;
+		return storage;
 	}
 }
 // END

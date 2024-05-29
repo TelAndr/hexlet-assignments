@@ -8,7 +8,7 @@ import java.util.LinkedHashMap;
 public class InMemoryKV implements KeyValueStorage{
 	private Map<String,String> storageData; //= new HashMap<String, String>();
 	InMemoryKV(Map<String,String> inputStorageData){
-		storageData = new LinkedHashMap<>(); //<String, String>();
+		storageData = new HashMap<>(); //<String, String>();
 		//storageData = inputStorageData;
 		inputStorageData.forEach(storageData::putIfAbsent);
 	}
@@ -34,7 +34,9 @@ public class InMemoryKV implements KeyValueStorage{
 	}
 	//@Override
 	public Map<String, String> toMap() {
-		return storageData;
+		Map<String, String> outMap = new HashMap<>();
+		outMap.putAll(storageData);
+		return outMap;
 	}
 }
 // END
