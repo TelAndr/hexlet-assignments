@@ -5,12 +5,15 @@ plugins {
 
 repositories {
   mavenCentral()
+  jcenter()
 }
 
 dependencies {
+  implementation 'com.intellij:annotations:+@jar'
   testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.0-M1'
   testImplementation 'org.junit.jupiter:junit-jupiter-params:5.8.0-M1'
   testImplementation 'org.assertj:assertj-core:3.19.0'
+  compileOnly "org.projectlombok:lombok:1.16.12"
 }
 
 test {
