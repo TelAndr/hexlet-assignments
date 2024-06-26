@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 // BEGIN
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 import org.jetbrains.annotations.NotNull;
 import java.util.Random;
 /*public class Validator {
@@ -34,7 +35,7 @@ import java.util.Random;
 		return nameFieldsNotValidate;
 	}
 } */
-public class Validator {
+/*public class Validator {
     public static List<String> validate(Object instance) {
         List<String> nameFieldsNotValidate = new ArrayList<>();
         Field[] fields = instance.getClass().getDeclaredFields();
@@ -56,6 +57,33 @@ public class Validator {
 		}
 
     return nameFieldsNotValidate;
+	}
+} */
+
+public class Validator {
+    public static List<String> validate(Object instance) {
+		//Field[] arFields = instance.getClass().getDeclaredFields();
+		//List<Field> fields = new ArrayList<Field>(Arrays.asList(arFields)); //Arrays.asList(instance.getClass().getDeclaredFields());
+		List<Field> fields = Arrays.asList(instance.getClass().getDeclaredFields());
+		List<String> result = new ArrayList<>();
+		
+		for (Field field : fields) {
+			if (field.isAnnotationPresent(NotNull.class)) {
+				Object value;
+				try {
+					field.setAccessible(true);
+					value = field.get(instance);
+					field.setAccessible(false);
+				} catch (Exception e) {
+					throw new RuntimeException(e);
+				}
+				if (value == null) {
+					result.add(field.getName());
+				}
+			}
+		}
+		
+		return result;
 	}
 }
 // END
