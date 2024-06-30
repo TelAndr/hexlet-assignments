@@ -1,27 +1,23 @@
 package exercise;
-//import lombok.NonNull;
-import org.jetbrains.annotations.NotNull;
+
 class Address {
-    // BEGIN
     @NotNull
-    // END
+    @MinLength
     private String country;
 
-    // BEGIN
     @NotNull
-    // END
+    @MinLength
     private String city;
 
-    // BEGIN
     @NotNull
-    // END
+    @MinLength
     private String street;
 
-    // BEGIN
     @NotNull
-    // END
+    @MinLength
     private String houseNumber;
 
+    @MinLength
     private String flatNumber;
 
     Address(String country, String city, String street, String houseNumber, String flatNumber) {

@@ -1,89 +1,29 @@
 package exercise;
 
 import java.lang.reflect.Field;
-// BEGIN
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Arrays;
-import org.jetbrains.annotations.NotNull;
-import java.util.Random;
-/*public class Validator {
-	//public static List<String> validate(Address address) {
-	public static List<String> validate(Object instance) {
-		List<String> nameFieldsNotValidate = new ArrayList<>();
-		Field[] fields = instance.getClass().getDeclaredFields();
-		//for (Field field : address.getClass().getDeclaredFields()) {
-		for (Field field : fields) {
-			//NotNull notNull = field.getAnnotation(NotNull.class);
-			//if (field.isAnnotationPresent(NotNull.class) && field.getName() == null) {
-			////if (notNull == null && field.getName() == null) {
-			//	nameFieldsNotValidate.add(field.getName());
-			if (field.isAnnotationPresent(NotNull.class)) {
-				Object value;
-				try {
-					field.setAccessible(true);
-					value = field.get(instance);
-					field.setAccessible(false);
-				} catch (Exception e) {
-					throw new RuntimeException(e);
-				}
-				if (value == null) {
-					nameFieldsNotValidate.add(field.getName());
-				}
-			}
-		}
-		return nameFieldsNotValidate;
-	}
-} */
-/*public class Validator {
-    public static List<String> validate(Object instance) {
-        List<String> nameFieldsNotValidate = new ArrayList<>();
-        Field[] fields = instance.getClass().getDeclaredFields();
-
-		for (Field field : fields) {
-			if (field.isAnnotationPresent(NotNull.class)) {
-				Object value;
-				try {
-					field.setAccessible(true);
-					value = field.get(instance);
-					field.setAccessible(false);
-				} catch (Exception e) {
-					throw new RuntimeException(e);
-				}
-				if (value == null) {
-					nameFieldsNotValidate.add(field.getName());
-				}
-			}
-		}
-
-    return nameFieldsNotValidate;
-	}
-} */
+import java.util.*;
 
 public class Validator {
-    public static List<String> validate(Object instance) {
-		//Field[] arFields = instance.getClass().getDeclaredFields();
-		//List<Field> fields = new ArrayList<Field>(Arrays.asList(arFields)); //Arrays.asList(instance.getClass().getDeclaredFields());
-		List<Field> fields = Arrays.asList(instance.getClass().getDeclaredFields());
-		List<String> result = new ArrayList<>();
-		
-		for (Field field : fields) {
+	public static List<String> validate(Address address) {
+		Class<Address> addressClass = Address.class;
+		Field[] fields = addressClass.getDeclaredFields();
+		List<String> list = new ArrayList<>();
+		for (var field : fields) {
 			if (field.isAnnotationPresent(NotNull.class)) {
-				Object value;
+				field.setAccessible(true);
+				Object value = null;
 				try {
-					field.setAccessible(true);
-					value = field.get(instance);
-					field.setAccessible(false);
-				} catch (Exception e) {
-					throw new RuntimeException(e);
+					value = field.get(address);
+				} catch (IllegalAccessException e) {
+					System.err.println("Ошибка доступа к полю: " + field.getName() + ": " + e.getMessage());
 				}
 				if (value == null) {
-					result.add(field.getName());
+					String fieldName = field.getName();
+					list.add(fieldName);
 				}
+				field.setAccessible(false);
 			}
 		}
-		
-		return result;
+		return list;
 	}
 }
-// END
