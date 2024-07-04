@@ -26,16 +26,25 @@ class Car {
 		// ... and configure
 		Car myCar = new Car();
 		File newState = new File("my-stuff.json");
+		String outString;
 		//return mapper.writeValue(newState, this); // writes JSON serialization of MyValue instance
-		return mapper.writeValueAsString(myCar);
+		try {
+			outString = mapper.writeValueAsString(myCar);
+		} catch (com.fasterxml.jackson.core.JsonProcessingException e){
+			System.out.println("exeption JsonProcessingException!!!");
+			outString = null;
+		}
+		return outString;
 	}
 	public static Car unserialize(String nameJSON) {
 		final ObjectMapper mapper = new ObjectMapper(); // can use static singleton, inject: just make sure to reuse!
-		//MyValue value = new MyValue();
-		// ... and configure
-		// or, read
-		//return mapper.readValue(new File(nameJSON), Car.class);
-		return mapper.readValue(nameJSON, Car.class);
+		Car myCar = new Car();
+		try {
+			myCar = mapper.readValue(nameJSON, Car.class);
+		} catch (java.io.IOException e1) {
+			System.out.println("exeption IOExeption!!!");
+		}
+		return myCar;
 	}
     // END
 }
