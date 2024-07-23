@@ -20,7 +20,7 @@ class Car {
     User owner;
 
     // BEGIN
-	public String serialize() {
+	/*public String serialize() {
 		final ObjectMapper mapper = new ObjectMapper(); // can use static singleton, inject: just make sure to reuse!
 		//MyValue value = new MyValue();
 		// ... and configure
@@ -35,8 +35,8 @@ class Car {
 			outString = null;
 		}
 		return outString;
-	}
-	public static Car unserialize(String nameJSON) {
+	}*/
+	/*public static Car unserialize(String nameJSON) {
 		final ObjectMapper mapper = new ObjectMapper(); // can use static singleton, inject: just make sure to reuse!
 		Car myCar = new Car();
 		try {
@@ -45,6 +45,16 @@ class Car {
 			System.out.println("exeption IOExeption!!!");
 		}
 		return myCar;
+	}*/
+	public String serialize() throws Exception {
+		ObjectMapper objectMapper = new ObjectMapper();
+		String jsonRepresentation = objectMapper.writeValueAsString(this);
+		return jsonRepresentation;
+	}
+
+	public static Car unserialize(String jsonRepresentation) throws Exception {
+		ObjectMapper objectMapper = new ObjectMapper();
+		return objectMapper.readValue(jsonRepresentation, Car.class);
 	}
     // END
 }

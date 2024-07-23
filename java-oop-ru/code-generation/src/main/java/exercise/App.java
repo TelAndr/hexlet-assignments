@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 // BEGIN
 public class App {
 	//private Car instance;
-    public static void save(Path objPath, Car objCar) {
+    /*public static void save(Path objPath, Car objCar) {
 		try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(String.valueOf(objPath))))
         {
             String jsonRepresentation = objCar.serialize();
@@ -21,8 +21,8 @@ public class App {
              
             System.out.println(ex.getMessage());
         } 
-	}
-	public static Car extract(Path objPath) throws IOException {
+	}*/
+	/*public static Car extract(Path objPath) throws IOException {
         //Files.lines(Paths.get(objPath.getFileName().toString()), Charset.forName("windows-1251"));
         Car instance = new Car();
         if (Files.exists(objPath)) {
@@ -40,6 +40,16 @@ public class App {
             lines.close();
         }
 	    return instance;
+    }*/
+    public static void save(Path filePath, Car instance) throws Exception {
+        String jsonRepresentation = instance.serialize();
+        Files.writeString(filePath, jsonRepresentation, StandardOpenOption.WRITE);
+    }
+
+    public static Car extract(Path filePath) throws Exception {
+        String jsonRepresentation = Files.readString(filePath);
+        Car instance = Car.unserialize(jsonRepresentation);
+        return instance;
     }
 }
 // END
