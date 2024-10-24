@@ -1,7 +1,7 @@
 package exercise;
 
 // BEGIN
-package org.example.hexlet;
+//package org.example.hexlet;
 
 import io.javalin.Javalin;
 // END
