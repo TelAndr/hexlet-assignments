@@ -2,6 +2,7 @@ package exercise;
 
 // BEGIN
 //package org.example.hexlet;
+package com.huongdanjava.javalin;
 
 import io.javalin.Javalin;
 // END
