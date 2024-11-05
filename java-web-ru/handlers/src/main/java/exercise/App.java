@@ -18,12 +18,12 @@ public final class App {
 	ObjectMapper objectMapper = new ObjectMapper();
 	String jsonArrayPhones = objectMapper.writeValueAsString(phones);
 	String jsonArrayDomains = objectMapper.writeValueAsString(domains);
-        var app = Javalin.create(config -> {
-            config.bundledPlugins.enableDevLogging();
-        });
-        app.get("/phones", ctx -> ctx.result(jsonArrayPhones));
+    var app = Javalin.create(config -> {
+        config.bundledPlugins.enableDevLogging();
+    });
+    app.get("/phones", ctx -> ctx.result(jsonArrayPhones));
 	app.get("/domains", ctx -> ctx.result(jsonArrayDomains));
-        return app;
+    return app;
         // END
     }
     //@NotNull
