@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
 
 public final class App {
 
-    public static Javalin getApp() throws IOException { // Exception
+    public static Javalin getApp() { // throws IOException Exception
 
         // BEGIN
         List<String> phones = Data.getPhones();
@@ -26,7 +26,7 @@ public final class App {
         return app;
         // END
     }
-    @NotNull
+    //@NotNull
     public static void main(String[] args) {
         Javalin app = getApp();
         app.start(7070);
