@@ -13,17 +13,17 @@ public final class App {
     public static Javalin getApp() { // throws IOException Exception
 
         // BEGIN
-	List<String> phones = Data.getPhones();
-	List<String> domains = Data.getDomains();
-	ObjectMapper objectMapper = new ObjectMapper();
-	String jsonArrayPhones = objectMapper.writeValueAsString(phones);
-	String jsonArrayDomains = objectMapper.writeValueAsString(domains);
-    var app = Javalin.create(config -> {
-        config.bundledPlugins.enableDevLogging();
-    });
-    app.get("/phones", ctx -> ctx.result(jsonArrayPhones));
-	app.get("/domains", ctx -> ctx.result(jsonArrayDomains));
-    return app;
+		List<String> phones = Data.getPhones();
+		List<String> domains = Data.getDomains();
+		ObjectMapper objectMapper = new ObjectMapper();
+		String jsonArrayPhones = objectMapper.writeValueAsString(phones);
+		String jsonArrayDomains = objectMapper.writeValueAsString(domains);
+		var app = Javalin.create(config -> {
+			config.bundledPlugins.enableDevLogging();
+		});
+		app.get("/phones", ctx -> ctx.result(jsonArrayPhones));
+		app.get("/domains", ctx -> ctx.result(jsonArrayDomains));
+		return app;
         // END
     }
     //@NotNull
