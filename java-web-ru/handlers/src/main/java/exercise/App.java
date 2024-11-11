@@ -1,5 +1,6 @@
 package exercise;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import io.javalin.Javalin;
 
 import java.io.IOException;
@@ -11,19 +12,31 @@ import org.jetbrains.annotations.NotNull;
 
 public final class App {
 
-    public static Javalin getApp() throws IOException { //  Exception
+    public static Javalin getApp()  { // throws IOException  Exception
 
         // BEGIN
         List<String> phones = Data.getPhones();
         List<String> domains = Data.getDomains();
         ObjectMapper objectMapper = new ObjectMapper();
-        String jsonArrayPhones = objectMapper.writeValueAsString(phones);
-        String jsonArrayDomains = objectMapper.writeValueAsString(domains);
+        String jsonArrayPhones = null;
+        try {
+            jsonArrayPhones = objectMapper.writeValueAsString(phones);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+        String jsonArrayDomains = null;
+        try {
+            jsonArrayDomains = objectMapper.writeValueAsString(domains);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
         var app = Javalin.create(config -> {
             config.bundledPlugins.enableDevLogging();
         });
-        app.get("/phones", ctx -> ctx.result(jsonArrayPhones));
-        app.get("/domains", ctx -> ctx.result(jsonArrayDomains));
+        String finalJsonArrayPhones = jsonArrayPhones;
+        app.get("/phones", ctx -> ctx.result(finalJsonArrayPhones));
+        String finalJsonArrayDomains = jsonArrayDomains;
+        app.get("/domains", ctx -> ctx.result(finalJsonArrayDomains));
         return app;
         // END
     }
