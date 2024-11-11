@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-//import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.NotNull;
 
 
 public final class App {
@@ -28,7 +28,7 @@ public final class App {
         // END
     }
 
-    //@NotNull
+    @NotNull
     public static void main(String[] args) throws IOException {
         Javalin app = getApp();
         app.start(7070);
