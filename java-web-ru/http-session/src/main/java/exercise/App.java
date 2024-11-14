@@ -16,8 +16,12 @@ public final class App {
         });
 
         // BEGIN
-        app.get("/users", ctx -> {
-            ctx.json(USERS);
+		app.get("/users", ctx -> {
+            var page = ctx.queryParamAsClass("page", Integer.class).getOrDefault(1);
+			var per = ctx.queryParamAsClass("per", Integer.class).getOrDefault(5);
+			var offset = (page - 1) * per;
+			var sublistUsers = USERS.subList(offset, offset + per);
+			ctx.json(sublistUsers);
         });
         // END
 
