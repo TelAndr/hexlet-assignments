@@ -20,7 +20,7 @@ repositories {
 }
 
 dependencies {
-    annotationProcessor("io.javalin:javalin:6.1.3")
+    implementation("io.javalin:javalin:6.1.3")
     implementation("org.slf4j:slf4j-simple:2.0.7")
     implementation("net.datafaker:datafaker:2.0.1")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.15.0")

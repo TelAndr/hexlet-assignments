@@ -1,5 +1,6 @@
 package exercise;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import io.javalin.Javalin;
 
 import java.util.List;
