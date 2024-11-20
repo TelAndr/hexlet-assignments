@@ -22,8 +22,10 @@ public final class App {
 
         // BEGIN
         app.get("/companies/{id}", ctx -> {
-            var id = Integer.parseInt(ctx.pathParam("id")); //ctx.pathParamAsClass("id", Integer.class);
-            Context companyNotFound = ctx.json(COMPANIES.getFirst().getOrDefault(id, "Company not found")); // .orElseThrow(() -> new NotFoundResponse("Company not found"))
+            //var id = Integer.parseInt(ctx.pathParam("id")); //ctx.pathParamAsClass("id", Integer.class);
+            var company = COMPANIES.stream().filter(COMPANY -> COMPANY.get("id").equals(ctx.pathParam("id"))).findFirst().orElseThrow(()->new NotFoundResponse("Company not found"));
+            ctx.json(company);
+            //Context companyNotFound = ctx.json(COMPANIES.getFirst().getOrDefault(id, "Company not found")); // .orElseThrow(() -> new NotFoundResponse("Company not found"))
         });
         // END
 
