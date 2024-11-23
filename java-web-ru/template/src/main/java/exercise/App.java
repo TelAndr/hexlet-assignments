@@ -27,7 +27,7 @@ public final class App {
         app.get("/users/{id}", ctx -> {
             //var id = ctx.pathParam("id");
             var id = ctx.pathParamAsClass("id", Long.class).get();
-            var user = USERS.stream().filter((USER -> USER.getId() == id).orElseThrow(() -> new NotFoundResponse("User not found"));;
+            var user = USERS.stream().filter((USER -> USER.getId() == id).orElseThrow(() -> new NotFoundResponse("User not found"));
             var page = new UserPage(user);
 			if(Objects.isNull(user)) {
                 //var id = ctx.pathParamAsClass("id", Long.class).get();
