@@ -6,7 +6,7 @@
         <title>Users</title>
     </head>
     <body>
-        <h1>${users.getHeader()}</h1>
+        <h1>List Of Users</h1>
         @if(users.getUsers().isEmpty())
             <p>Пока не добавлено ни одного курса</p>
         @else
