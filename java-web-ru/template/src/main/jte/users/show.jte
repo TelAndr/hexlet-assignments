@@ -9,6 +9,6 @@
 	<div>
 		<h2><a href="/users/${findUser.getUser().getId()}"> ${findUser.getUser().getEmail()}</a></h2> 
 		<p>${findUser.getUser().toString()}</p>
-	<div>
+	</div>
 </body>
 </html>
