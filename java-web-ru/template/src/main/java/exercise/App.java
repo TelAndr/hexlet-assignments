@@ -26,28 +26,16 @@ public final class App {
         // BEGIN
         app.get("/users/{id}", ctx -> {
             //var id = ctx.pathParam("id");
-            var id = ctx.pathParamAsClass("id", Long.class).get();
-            var user = USERS.stream().filter((USER -> USER.getId() == id).orElseThrow(() -> new NotFoundResponse("User not found"));
-            var page = new UserPage(user);
-			if(Objects.isNull(user)) {
-                //var id = ctx.pathParamAsClass("id", Long.class).get();
-                //var user = UserRepository.find(id) // Ищем пользователя в базе по id
-                //        .orElseThrow(() -> new NotFoundResponse("Entity with id = " + id + " not found"));
-			} else {
-				ctx.render("users/show.jte", model("page", page));
-			}
+            var id = ctx.pathParamAsClass("id", Long.class).getOrDefault(null);
+            var curUser = USERS.stream().filter(user -> user.getId() == id).findFirst().orElseThrow(() -> new NotFoundResponse("User not found"));
+            var page = new UserPage(curUser);
+            ctx.render("users/show.jte", model("curUser", curUser));
         });
 		
 		app.get("/users", ctx -> {
             //var users = USERS;
-            var page = new UsersPage(USERS);
-			for (User curUser : USERS) {
-				if (Objects.isNull(curUser)) {
-					ctx.render();
-				} else {
-					ctx.render("users/index.jte", model("page", page));
-				}
-			}
+            var users = new UsersPage(USERS);
+            ctx.render("users/index.jte", model("users", users));
         });
         // END
 
