@@ -29,7 +29,7 @@ public final class App {
             var id = ctx.pathParamAsClass("id", Long.class).getOrDefault(null);
             var curUser = USERS.stream().filter(user -> user.getId() == id).findFirst().orElseThrow(() -> new NotFoundResponse("User not found"));
             var page = new UserPage(curUser);
-            ctx.render("users/show.jte", model("curUser", curUser));
+            ctx.render("users/show.jte", model("page", page));
         });
 		
 		app.get("/users", ctx -> {
