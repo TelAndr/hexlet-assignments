@@ -1,15 +1,15 @@
 @import exercise.dto.users.UserPage
-@param UserPage findUser
+@param UserPage page
 
 <html>
 <head>
 	<title>User</title>
 </head>
 <body>
-<h1>${findUser.getUser().getId()}</h1>
+<h1>${page.getUser().getId()}</h1>
 	<div>
-		<h2><a href="/users/${findUser.getUser().getId()}"> ${findUser.getUser().getEmail()}</a></h2> 
-		<p>${findUser.getUser().toString()}</p>
+		<h2><a href="/users/${page.getUser().getId()}"> ${page.getUser().getEmail()}</a></h2> 
+		<p>${page.getUser().toString()}</p>
 	</div>
 </body>
 </html>
