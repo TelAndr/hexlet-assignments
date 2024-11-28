@@ -1,4 +1,4 @@
-@import exercise.hexlet.dto.UsersPage
+@import exercise.dto.users.UsersPage
 @param UsersPage page
 
 @template.layout.page(
@@ -6,15 +6,14 @@
         <a href="/">Главная</a>
         <a href="/users">All Users</a>`,
     footer = @`
-        <p>Look all the users</p>`
+        <p>Look all the users</p>`,
     content = @`
-        @for(var user : page.getUsers()) {
+        @for(var user : page.getUsers())
             <div>
                 <p>${user.getFirstName()}</p>
                 <p>${user.getLastName()}</p>
                 <p>${user.getEmail()}</p>
             </div>
-        }
         @endfor
     `
 )
