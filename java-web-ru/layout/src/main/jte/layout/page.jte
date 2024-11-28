@@ -11,7 +11,7 @@
 </head>
 <body>
     <header>
-        <h1>{header}</h1>
+        <h1>${header}</h1>
     </header>
     <h1>User</h1>
     <div class="content">
