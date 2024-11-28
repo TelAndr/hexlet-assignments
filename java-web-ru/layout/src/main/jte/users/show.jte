@@ -1,4 +1,4 @@
-@import org.example.WelcomePage
+@import exercise.dto.users.UserPage
 @param UserPage page
 
 @template.layout.page(
