@@ -1,18 +1,19 @@
-@import org.example.Page
 @import gg.jte.Content
 
-@param Page page
+@param Content header
+@param Content footer
 @param Content content
-@param Content footer = null
 
 <head>
-    @if(page.getDescription() != null)
-        <meta name="description" content="${page.getDescription()}">
-    @endif
-    <title>${page.getTitle()}</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="with=device-with, initial-scale=1">
+    <title>Макет сайта</title>
 </head>
 <body>
-    <h1>${page.getTitle()}</h1>
+    <header>
+        <h1>{header}</h1>
+    </header>
+    <h1>User</h1>
     <div class="content">
         ${content}
     </div>
