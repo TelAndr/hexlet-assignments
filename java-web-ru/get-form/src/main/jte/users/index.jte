@@ -1,4 +1,4 @@
-@import exercise.dto.UsersPage
+@import exercise.dto.users.UsersPage
 @param UsersPage page
 
 @template.layout.page(
