@@ -37,7 +37,7 @@ public final class App {
                 processedUsers = USERS;
             }
             var usersPage = new UsersPage(processedUsers, term);
-            ctx.render("users/index.jte", model("usersPage", usersPage));
+            ctx.render("users/index.jte", model("page", usersPage));
         });
         // END
 
