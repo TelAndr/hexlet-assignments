@@ -26,7 +26,7 @@ public final class App {
         // BEGIN
         app.get("/users", ctx -> {
             //var term = ctx.queryParam("firstName");
-			String term = context.queryParamAsClass("term", String.class).getOrDefault("");
+			String term = ctx.queryParamAsClass("term", String.class).getOrDefault("");
             List<User> processedUsers = new ArrayList<>();
             // Фильтруем, только если была отправлена форма
             if (term != null && !term.isEmpty()) {
