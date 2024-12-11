@@ -1,5 +1,5 @@
 @import exercise.dto.articles.BuildArticlePage
-@param BuildUserPage page
+@param BuildArticlePage page
 
 <html lang="en">
 <head>
