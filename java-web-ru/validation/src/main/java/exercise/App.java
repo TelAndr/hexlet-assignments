@@ -42,7 +42,7 @@ public final class App {
 					  .check(value -> !ArticleRepository.existsByTitle(value), "Статья с таким названием уже существует")
 					  .get(); //!Assert.IsTrue(verifyTextPresent("title")))
 			  var content = ctx.formParamAsClass("content", String.class)
-						.check(value -> value.length() >= 10, "У содержимого статьи недостаточная длина")
+						.check(value -> value.length() >= 10,"Статья должна быть не короче 10 символов")
 						.get();
 			  var article = new Article(title, content);
 			  ArticleRepository.save(article);
