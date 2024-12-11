@@ -1,4 +1,4 @@
-@import exercise.dto.users.BuildUserPage
+@import exercise.dto.articles.BuildArticlePage
 @param BuildUserPage page
 
 <html lang="en">
