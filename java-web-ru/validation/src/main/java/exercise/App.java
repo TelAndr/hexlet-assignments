@@ -38,9 +38,9 @@ public final class App {
 		app.post("/articles", ctx -> {
 		  try {
 			  var title = ctx.formParamAsClass("title", String.class)
-					  .check(value -> value.trim().length() >= 2, "У названия статьи недостаточная длина" )
+					  .check(value -> value.trim().length() >= 2, "Название не должно быть короче двух символов" )
 					  .check(value -> !ArticleRepository.existsByTitle(value), "Статья с таким названием уже существует")
-					  .get(); //!Assert.IsTrue(verifyTextPresent("title")))
+					  .get().trim(); //!Assert.IsTrue(verifyTextPresent("title")))
 			  var content = ctx.formParamAsClass("content", String.class)
 						.check(value -> value.length() >= 10,"Статья должна быть не короче 10 символов")
 						.get();
