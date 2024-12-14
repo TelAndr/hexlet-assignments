@@ -1,5 +1,5 @@
 @import exercise.util.NamedRoutes
-@import exercise.dto.posts.PostsPage
+@import exercise.dto.posts.PostPage
 @param PostPage page
 
 <html lang="en">
