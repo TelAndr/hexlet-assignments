@@ -32,10 +32,10 @@ public class PostsController {
     //}
 
 	public static void show(Context ctx) {
-		var id = ctx.pathParamAsClass("id", Long.class).get();
+		Long id = ctx.pathParamAsClass("id", Long.class).get();
 		var post = PostRepository.find(id)
 				.orElseThrow(() -> new NotFoundResponse("Page not found"));
-		var page = new PostPage(post);
+		PostPage page = new PostPage(post);
 		ctx.render("posts/show.jte", model("page", page));
 		//ctx.render(posts/show.jte);
 		//var posts = PostRepository.getEntities();
