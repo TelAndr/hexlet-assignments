@@ -6,12 +6,15 @@ import io.javalin.validation.ValidationError;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 // BEGIN
 @AllArgsConstructor
-@NoArgsConstructor
 @Getter
+@Setter
+@NoArgsConstructor
 public class EditPostPage {
+   private Long id;
    private String name;
    private String body;
    private Map<String, List<ValidationError<Object>>> errors;

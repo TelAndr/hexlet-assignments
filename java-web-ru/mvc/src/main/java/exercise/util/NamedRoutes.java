@@ -23,12 +23,16 @@ public class NamedRoutes {
     }
 
     // BEGIN
-    public static String displayFormEdit{
+    public static String editPost(Long id) {
 		return postPath(id) + "/edit";
 	}
 	
-	public static String updateFormUsers{
+	public static String editPost(String id) {
 		return postPath(id);
 	}
+
+    public static String update(String id) {
+        return postPath(id);
+    }
     // END
 }
