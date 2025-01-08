@@ -11,7 +11,7 @@
   </head>
   <body>
     <main>
-      <h1>Check Validation</h1>
+      <h1>Check validation</h1>
       @if(page.getName() != null)
         <form action="${NamedRoutes.logoutPath()}" method="post">
             <input type="text" placeholder="Nickname" name="name" value="${page.getName()}"/>

@@ -26,15 +26,15 @@ public class SessionsController {
 	}
 	//app.post("/sessions", SessionsController::create);
 	public static void create(Context ctx) {
-        var nickname = ctx.formParam("nickname");
+        String name = ctx.formParam("name");
 		String password = ctx.formParam("password");
-		String encryptPassword = Security.encript(password);
-		var user = UsersRepository.findByName(nickname);
-		if (user == null || user.getPassword().equals(encryptPassword)) {
-			LoginPage page = new LoginPage(nickname, "Wrong username or password");
+		String encryptPassword = Security.encrypt(password);
+		var user = UsersRepository.findByName(name);
+		if (user == null || !user.getPassword().equals(encryptPassword)) {
+			LoginPage page = new LoginPage(name, "Wrong username or password");
 			ctx.render("build.jte", model("page", page)).status(302);
 		} else {
-			ctx.sessionAttribute("auth", nickname);
+			ctx.sessionAttribute("auth", name);
 			ctx.redirect(NamedRoutes.rootPath());
 		}
 		//SecureRandom random = new SecureRandom();

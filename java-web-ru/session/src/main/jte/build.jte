@@ -11,7 +11,7 @@
 </head>
 <body>
 <main>
-<form action="${NamedRoutes.LoginPath()}" method="post">
+<form action="${NamedRoutes.loginPath()}" method="post">
   <input type="text" placeholder="Nickname" name="name" />
   <input type="password" placeholder="Password" name="password" />
   <input type="submit" />
