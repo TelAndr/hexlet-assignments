@@ -30,7 +30,7 @@ public class SessionsController {
 		String password = ctx.formParam("password");
 		String encryptPassword = encrypt(password);
 		var user = UsersRepository.findByName(name);
-		if (user == null || !password.equals(encryptPassword)) {
+		if (user == null || !user.get().getPassword().equals(encryptPassword)) {
 			LoginPage page = new LoginPage(name, "Wrong username or password");
 			ctx.render("build.jte", model("page", page)).status(302);
 		} else {
