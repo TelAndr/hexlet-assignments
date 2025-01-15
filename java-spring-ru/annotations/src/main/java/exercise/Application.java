@@ -14,20 +14,20 @@ public class Application {
 
             // Проверяем, есть ли у метода аннотация @Inspect
             if (method.isAnnotationPresent(Inspect.class)) {
-
-                //
-
-                try {
+                var returnedType = method.getReturnType().getSimpleName();
+                System.out.printf("Method %s returns a value of type %s%n",
+                        method.getName(), returnedType);
+                //try {
                     // Выполняем метод с аннотацией Inspect
-                    method.invoke(address);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                //    method.invoke(address);
+                //} catch (Exception e) {
+                //    e.printStackTrace();
+                //}
 
                 //
 
-                System.out.println("Executed method: " + method.getName());
-                System.out.println("Execution time: " + executionTime + " milliseconds");
+                //System.out.println("Executed method: " + method.getName());
+                //System.out.println("Execution time: " + executionTime + " milliseconds");
             }
         }
         // END
