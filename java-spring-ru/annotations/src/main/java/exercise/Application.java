@@ -7,7 +7,6 @@ import java.lang.reflect.Method;
 public class Application {
     public static void main(String[] args) {
         var address = new Address("London", 12345678);
-
         // BEGIN
         // Итерируем все методы класса
         for (Method method : address.getClass().getMethods()) {
@@ -23,9 +22,6 @@ public class Application {
                 //} catch (Exception e) {
                 //    e.printStackTrace();
                 //}
-
-                //
-
                 //System.out.println("Executed method: " + method.getName());
                 //System.out.println("Execution time: " + executionTime + " milliseconds");
             }
