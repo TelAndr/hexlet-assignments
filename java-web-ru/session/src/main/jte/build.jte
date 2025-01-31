@@ -11,17 +11,17 @@
 </head>
 <body>
 <main>
-<form action="${NamedRoutes.loginPath()}" method="post">
-  <input type="text" placeholder="Nickname" name="name" />
-  <input type="password" placeholder="Password" name="password" />
-  <input type="submit" />
-</form>
+    <form action="${NamedRoutes.loginPath()}" method="post">
+        <input type="text" placeholder="Nickname" name="name" />
+        <input type="password" placeholder="Password" name="password" />
+        <input type="submit" />
+    </form>
 
-@if(page.getError() != null)
-    <div>
-        ${page.getError()}
-    </div>
-@endif
+    @if(page.getError() != null)
+        <div>
+            ${page.getError()}
+        </div>
+    @endif
 </main>
 </body>
 </html>

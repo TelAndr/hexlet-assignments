@@ -25,7 +25,7 @@ public class UsersRepository {
                 .findAny();
     }
 
-    public static Optional<User> findByName(String name) {
+    public static User findByName(String name) { // Optional<User>
         return entities.stream()
                 .filter(entity -> entity.getName().equals(name))
                 .findAny();
