@@ -28,7 +28,8 @@ public class UsersRepository {
     public static User findByName(String name) { // Optional<User>
         return entities.stream()
                 .filter(entity -> entity.getName().equals(name))
-                .findAny();
+                .findAny()
+                .orElse(null);
     }
 
     public static boolean existsByName(String name) {
