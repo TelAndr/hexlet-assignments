@@ -18,4 +18,5 @@ public class GuestCreateDTO {
 
 	@FutureOrPresent
     private LocalDate cardValidUntil;
+}
 // END
