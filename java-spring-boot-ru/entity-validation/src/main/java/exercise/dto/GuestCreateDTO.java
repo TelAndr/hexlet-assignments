@@ -1,5 +1,9 @@
 package exercise.dto;
 
+import jakarta.validation.constraints.*;
+import lombok.Getter;
+import lombok.Setter;
+
 // BEGIN
 @Setter
 @Getter
