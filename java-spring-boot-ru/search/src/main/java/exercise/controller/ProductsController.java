@@ -30,7 +30,7 @@ public class ProductsController {
     private ProductSpecification specification;
 
     // BEGIN
-    @GetMapping("/products")
+    @GetMapping("")
     @ResponseStatus(HttpStatus.OK)
     public List<ProductDTO> index(@ModelAttribute ProductParamsDTO params, @RequestParam(defaultValue = "1") int page) {
         //var products = productRepository.findAll();
@@ -40,7 +40,6 @@ public class ProductsController {
 		var spec = specification.build(params);
 		var products = productRepository.findAll(spec, PageRequest.of(page - 1, 10));
 		var result = products.map(productMapper::map).stream().toList();
-
         return result;
     }
     // END
