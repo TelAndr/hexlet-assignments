@@ -51,7 +51,7 @@ public class GuestsController {
     // Валидация происходит до вызова метода
     public GuestDTO create(@Valid @RequestBody GuestCreateDTO createData) {
         // Преобразование в сущность
-        var guest = guestMapper.map(guestData);
+        var guest = guestMapper.map(createData);
         guestRepository.save(guest);
         // Преобразование в DTO
         var guestDTO = guestMapper.map(guest);
