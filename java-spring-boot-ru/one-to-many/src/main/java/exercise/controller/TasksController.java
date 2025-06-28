@@ -29,7 +29,9 @@ public class TasksController {
     // BEGIN
 	 @Autowired
     private TaskRepository taskRepository;
-	
+
+	@Autowired
+	private UserRepository userRepository;
 	 @Autowired
     private TaskMapper taskMapper;
 	
