@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import java.util.List;
 
+import exercise.model.Product;
 import exercise.repository.ProductRepository;
 import exercise.dto.ProductDTO;
 import exercise.dto.ProductCreateDTO;
@@ -34,15 +35,16 @@ public class ProductsController {
 	@ResponseStatus(HttpStatus.OK)
 	public List<ProductDTO> index() {
 		return productRepository.findAll().stream()
-			.map(item -> productMapper(item))
+			.map(item -> productMapper.map(item))
 			.toList();
 	}
 
-    @ProductMapping("/products")
+    //@ProductMapping("/products")
+    @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public productDTO create(@RequestBody ProductCreateDTO productData) {
+    public ProductDTO create(@RequestBody ProductCreateDTO productData) {
         // Преобразование в сущность
-        var product = productMapper.map(productData);
+        Product product = productMapper.map(productData);
         productRepository.save(product);
         // Преобразование в DTO
         var productDTO = productMapper.map(product);
@@ -51,7 +53,7 @@ public class ProductsController {
 
     @PutMapping("/products/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ProductDTO update(@RequestBody @Valid ProductUpdateDTO productData, @PathVariable Long id) {
+    public ProductDTO update(@RequestBody ProductUpdateDTO productData, @PathVariable Long id) {
         var product = productRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Not Found"));
         productMapper.update(productData, product);
