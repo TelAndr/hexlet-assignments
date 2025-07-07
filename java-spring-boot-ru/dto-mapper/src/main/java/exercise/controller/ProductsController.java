@@ -38,8 +38,7 @@ public class ProductsController {
 			.map(item -> productMapper.map(item))
 			.toList();
 	}
-
-    //@ProductMapping("/products")
+    
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
     public ProductDTO create(@RequestBody ProductCreateDTO productData) {
